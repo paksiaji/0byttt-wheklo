@@ -4,7 +4,7 @@ wheklo is tools hacking with python program
 ### Installation :
 ```
 $ git clone https://github.com/zerobyte-id/0byttt-wheklo.git
-$ cd 0byttt-whackdroid/
+$ cd 0byttt-wheklo/
 $ ./install.sh
 ```
 
