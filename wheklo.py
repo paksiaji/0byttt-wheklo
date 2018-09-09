@@ -145,7 +145,7 @@ def wPI():
 	for site in ws:
 		print "Try it => {}".format(site)
 		while i < len(patchw):
-			r = requests.get("{}{}".format(site, patchw[i]), timeout=5)
+			r = requests.get("{}{}wp-admin/setup-config.php".format(site, patchw[i]), timeout=5)
 			rwp = r.text
 			if "https://codex.wordpress.org/" in rwp:
 				print(bcolors.HIJAU + " [OK] {}{}".format(site, patchw[i]))
