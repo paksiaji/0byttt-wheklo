@@ -21,3 +21,11 @@ Usage : python wheklo.py
 
 #### Note : 
  * Dont change shell , that just uploader.
+ * Your list-domains.txt please use protocol http://domain.com , not domain.com
+ 
+   example : 
+   
+   ```$ cat list-domains.txt
+   http://www.facebook.com
+   http://youtube.com
+   ```
