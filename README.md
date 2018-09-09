@@ -7,6 +7,10 @@ $ git clone https://github.com/zerobyte-id/0byttt-wheklo.git
 $ cd 0byttt-whackdroid/
 $ ./install.sh
 ```
+
+Usage : python wheklo.py
+
+
 <img src="img/example.png">
 
 ### Tools :
