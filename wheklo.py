@@ -64,7 +64,7 @@ def LeNv():
 					lw.write(r.url + "\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Laravel")
-		except ConnectionError, TimeoutError, TimeoutError:
+		except ConnectionError, TimeoutError:
    			print(bcolors.BIRU + " [BAD URL] {}".format(site))
 	print bcolors.NORMAL
 	lw.close()
