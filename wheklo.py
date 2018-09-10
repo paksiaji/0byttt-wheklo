@@ -51,7 +51,7 @@ def LeNv():
 		print "Try it => {}".format(site)
 		try:
 			eNv = "{}/.env".format(site)
-			r = requests.get(eNv, timeout=5)
+			r = requests.get(eNv, allow_redirects=False, timeout=5)
 			rel = r.text
 			if "APP_ENV" in rel:
 				print(bcolors.HIJAU + " [OK] Laravel")
@@ -104,7 +104,7 @@ def jQu():
 	print "                         Plugins Jquery File Upload"
 	print bcolors.NORMAL
 	jd = raw_input("Input your domain full path: ")
-	r = requests.post("{}/index.php".format(jd), files=files)
+	r = requests.post("{}/index.php".format(jd), allow_redirects=False, files=files)
 	rc = requests.get("{}/files/zb-uploader.php".format(jd))
 	rjq = rc.text
 	if "ZeroByte.ID" in rjq:
@@ -130,7 +130,7 @@ def jQuL():
 		print bcolors.NORMAL
 		print "Try it => {}".format(site)
 		try:
-			r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), files=files)
+			r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), allow_redirects=False, files=files)
 			rc = requests.get("{}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site))
 			rjq = rc.text
 			if "ZeroByte.ID" in rjq:
@@ -164,7 +164,7 @@ def wPI():
 		i = 0
 		while i < len(patchw):
 			try:
-				r = requests.get("{}{}/wp-admin/setup-config.php?step=0".format(site, patchw[i]), timeout=5)
+				r = requests.get("{}{}/wp-admin/setup-config.php?step=0".format(site, patchw[i]), allow_redirects=False, timeout=5)
 				rwp = r.text
 				if "setup-config.php?step=1" in rwp:
 					print(bcolors.HIJAU + " [OK] {}{}".format(site, patchw[i]))
