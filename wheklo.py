@@ -22,7 +22,8 @@ class bcolors:
     BIRU="\033[0;34m"
     PUTIH="\033[1;37m"
 
-print bcolors.MERAH
+print bcolors.CYAN
+
 print "  ___  _           _   _   _                _          _    _       "
 print " / _ \| |__  _   _| |_| |_| |_    __      _| |__   ___| | _| | ___  "
 print "| | | | '_ \| | | | __| __| __|___\ \ /\ / / '_ \ / _ \ |/ / |/ _ \ "
@@ -32,8 +33,6 @@ print "             |___/                                                  "
 print "                                              |--------------------|"
 print "                                              | sUHada@zerobyte.id |"
 print "                                              |--------------------|"
-
-print bcolors.PUTIH
 def LeNv():
 	print bcolors.PUTIH
 	print "    __                                __ "
@@ -65,7 +64,7 @@ def LeNv():
 					lw.write(r.url + "\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Laravel")
-		except ConnectionError:
+		except ConnectionError, TimeoutError, TimeoutError:
    			print(bcolors.BIRU + " [BAD URL] {}".format(site))
 	print bcolors.NORMAL
 	lw.close()
@@ -138,7 +137,7 @@ def jQuL():
 				jw.write(site + "/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Upload Failed")
-		except ConnectionError:
+		except ConnectionError, TimeoutError:
    			print(bcolors.BIRU + " [BAD URL] {}".format(site))
   	print bcolors.NORMAL
   	jw.close()
@@ -168,7 +167,7 @@ def wPI():
 					ww.write("{}{}".format(site, patchw[i]) + "\n")
 				else:
 					print(bcolors.MERAH + " [BAD] {}{}".format(site, patchw[i]))
-			except ConnectionError:
+			except ConnectionError, TimeoutError:
 				print(bcolors.BIRU + " [BAD URL] {}".format(site))
 			i += 1
 	print bcolors.NORMAL
