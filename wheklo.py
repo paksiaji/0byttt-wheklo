@@ -137,7 +137,7 @@ def wPI():
 	print "| | /| / / /_/ // // __ \/ ___/ __/ __ `/ / / "
 	print "| |/ |/ / ____// // / / (__  ) /_/ /_/ / / /  "
 	print "|__/|__/_/   /___/_/ /_/____/\__/\__,_/_/_/   "
-	print "                    Checking Page Installasion"
+	print "                    Checking Page Installation"
 	print bcolors.NORMAL
 	wl = raw_input(" Input your file list : ")
 	ws = open(wl, "r").read().split()
