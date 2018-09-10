@@ -6,7 +6,6 @@
 
 import requests
 import os
-from requests.exceptions import ConnectionError
 
 headers = {
   "User-Agent": "Mozlila/5.0 (Linux; Android 7.0; SM-G892A Bulid/NRD90M; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/60.0.3112.107 Moblie Safari/537.36",
@@ -33,6 +32,7 @@ print "             |___/                                                  "
 print "                                              |--------------------|"
 print "                                              | sUHada@zerobyte.id |"
 print "                                              |--------------------|"
+print bcolors.NORMAL
 def LeNv():
 	print bcolors.PUTIH
 	print "    __                                __ "
@@ -64,8 +64,10 @@ def LeNv():
 					lw.write(r.url + "\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Laravel")
-		except ConnectionError, TimeoutError:
+		except requests.exceptions.ConnectionError:
    			print(bcolors.BIRU + " [BAD URL] {}".format(site))
+   		except requests.exceptions.Timeout:
+   			print(bcolors.BIRU + " [TIMEOUT URL] {}".format(site))
 	print bcolors.NORMAL
 	lw.close()
 
@@ -137,8 +139,10 @@ def jQuL():
 				jw.write(site + "/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php\n")
 			else:
 				print(bcolors.MERAH + " [BAD] Upload Failed")
-		except ConnectionError, TimeoutError:
+		except requests.exceptions.ConnectionError:
    			print(bcolors.BIRU + " [BAD URL] {}".format(site))
+   		except requests.exceptions.Timeout:
+   			print(bcolors.BIRU + " [TIMEOUT URL] {}".format(site))
   	print bcolors.NORMAL
   	jw.close()
 
@@ -167,8 +171,10 @@ def wPI():
 					ww.write("{}{}".format(site, patchw[i]) + "\n")
 				else:
 					print(bcolors.MERAH + " [BAD] {}{}".format(site, patchw[i]))
-			except ConnectionError, TimeoutError:
-				print(bcolors.BIRU + " [BAD URL] {}".format(site))
+			except requests.exceptions.ConnectionError:
+   				print(bcolors.BIRU + " [BAD URL] {}".format(site))
+   			except requests.exceptions.Timeout:
+   				print(bcolors.BIRU + " [TIMEOUT URL] {}".format(site))
 			i += 1
 	print bcolors.NORMAL
 	ww.close()
