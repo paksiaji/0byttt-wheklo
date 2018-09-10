@@ -161,7 +161,7 @@ def wPI():
 print " 1. LaraveL Environmet List [DB & SMTP]"
 print " 2. Reverse IP [API Hacker Target]"
 print " 3. jQuery File-Upload"
-print " 4. wP-insTall Check Page Installasion"
+print " 4. wP-insTall Check Page Installation"
 p = raw_input("Choose? ")
 
 if (p == "1"):
