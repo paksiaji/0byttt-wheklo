@@ -1,8 +1,7 @@
 #!/usr/bin/python
 #
-# Author : Suhada \\ https://github.com/suhada99 //
-# Home Page : https:///zerobyte.id
-#
+# Name     : wHekLo [LaraveLeNV, ReverseIP, jQueryFileUpload, wPinstall]
+# Vendor   : http://zerobyte.id/
 
 import requests
 import os
