@@ -5,6 +5,7 @@ wheklo is tools hacking with python program
 ```
 $ git clone https://github.com/zerobyte-id/0byttt-wheklo.git
 $ cd 0byttt-wheklo/
+$ chmod +x install.sh
 $ ./install.sh
 ```
 
