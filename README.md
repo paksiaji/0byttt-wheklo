@@ -1,6 +1,6 @@
 # 0byttt-wheklo
 wheklo is tools hacking with python program
-if you are windows user, you must install <a href="https://git-scm.com/downloads">Git Bash Download</a>
+if you are windows user, you must install <a href="https://git-scm.com/downloads">Git Bash Download</a> :)
 
 ### Installation :
 ```
